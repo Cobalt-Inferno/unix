@@ -1,0 +1,32 @@
+= Unix : The ultimate unixporn detail comment generator
+
+== Usage:
+[sidebar]
+----
+unix --help
+----
+.An example
+[sidebar]
+----
+unix markdown --font="Inconsolata 16" --dotfiles="https://github.com/kavulox/unix" --operatingsystem="Arch Linux" --wm=DWM
+----
+.This produces the following result:
+----
+**[WM]**
+ - DWM
+
+**[DOTFILES]**
+ - [GitHub - kavulox/unix: A simple tool for making unixporn detail comments](https://github.com/kavulox/unix)
+
+**[FONT]**
+ - Inconsolata 16
+
+**[OPERATING-SYSTEM]**
+ - Arch Linux
+----
+== Supported Markup Languages
+=== Currently *unix* only supports the following markup languages:
+====
+- Markdown
+- Asciidoc (In testing phaze)
+

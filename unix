@@ -39,10 +39,10 @@ if args.command == 'markdown':
         else:
             line += "**[BAR]**\n - {entity}\n\n".format(entity=args.bar)
     if args.wm:
-        if validators.url(arg.wm):
-            line += "**[WM]**\n - [{entity}]({link})\n\n".format(entity=extract(arg.wm), link=args.wm)
+        if validators.url(args.wm):
+            line += "**[WM]**\n - [{entity}]({link})\n\n".format(entity=extract(args.wm), link=args.wm)
         else:
-            line += "**[WM]**\n - {entity}\n\n".format(entity=arg.wm)
+            line += "**[WM]**\n - {entity}\n\n".format(entity=args.wm)
     if args.wallpaper:
         if validators.url(args.wallpaper):
             line += "**[WALLPAPER]**\n - [{entity}]({link})\n\n".format(entity=extract(args.wallpaper), link=args.wallpaper)
