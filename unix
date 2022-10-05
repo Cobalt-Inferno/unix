@@ -1,0 +1,107 @@
+#!/bin/python3
+import argparse
+import validators  
+import requests
+from bs4 import BeautifulSoup
+
+parser = argparse.ArgumentParser()
+subparser = parser.add_subparsers(dest='command')
+markdown = subparser.add_parser('markdown')
+
+markdown.add_argument('--bar', type=str, required=False)
+markdown.add_argument('--wm', type=str, required=False)
+markdown.add_argument('--wallpaper', type=str, required=False)
+markdown.add_argument('--terminal', type=str, required=False)
+markdown.add_argument('--colorscheme', type=str, required=False)
+markdown.add_argument('--dotfiles', type=str, required=False)
+markdown.add_argument('--compositor', type=str, required=False)
+markdown.add_argument('--font', type=str, required=False)
+markdown.add_argument('--theme', type=str, required=False)
+markdown.add_argument('--dock', type=str, required=False)
+markdown.add_argument('--fetch', type=str, required=False)
+markdown.add_argument('--shell', type=str, required=False)
+markdown.add_argument('--operatingsystem', type=str, required=False)
+
+def extract(str):
+    reqs = requests.get(str)
+    soup = BeautifulSoup(reqs.text, 'html.parser')
+    tmp = soup.find('title')
+    return tmp.get_text()
+
+
+
+args = parser.parse_args()
+if args.command == 'markdown':
+    line = ''
+    if args.bar:
+        if validators.url(args.bar):
+            line += "**[BAR]**\n - [{entity}]({link})\n\n".format(entity=extract(args.bar), link=args.bar)
+        else:
+            line += "**[BAR]**\n - {entity}\n\n".format(entity=args.bar)
+    if args.wm:
+        if validators.url(arg.wm):
+            line += "**[WM]**\n - [{entity}]({link})\n\n".format(entity=extract(arg.wm), link=args.wm)
+        else:
+            line += "**[WM]**\n - {entity}\n\n".format(entity=arg.wm)
+    if args.wallpaper:
+        if validators.url(args.wallpaper):
+            line += "**[WALLPAPER]**\n - [{entity}]({link})\n\n".format(entity=extract(args.wallpaper), link=args.wallpaper)
+        else:
+            line += "**[WALLPAPER]**\n - {entity}\n\n".format(entity=args.wallpaper)
+    if args.terminal:
+        if validators.url(args.terminal):
+            line += "**[TERMINAL]**\n - [{entity}]({link})\n\n".format(entity=extract(args.terminal), link=args.terminal)
+        else:
+            line += "**[TERMINAL]**\n - {entity}\n\n".format(entity=args.terminal)
+    if args.colorscheme:
+        if validators.url(args.colorscheme):
+            line += "**[COLORSCHEME]**\n - [{entity}]({link})\n\n".format(entity=extract(args.colorscheme), link=args.colorscheme)
+        else:
+            line += "**[COLORSCHEME]**\n - {entity}\n\n".format(entity=args.colorscheme)
+    if args.dotfiles:
+        if validators.url(args.dotfiles):
+            line += "**[DOTFILES]**\n - [{entity}]({link})\n\n".format(entity=extract(args.dotfiles), link=args.dotfiles)
+        else:
+            line += "**[DOTFILES]**\n - {entity}\n\n".format(entity=args.dotfiles)
+    if args.compositor:
+        if validators.url(args.compositor):
+            line += "**[COMPOSITOR]**\n - [{entity}]({link})\n\n".format(entity=extract(args.compositor), link=args.compositor)
+        else:
+            line += "**[COMPOSITOR]**\n - {entity}\n\n".format(entity=args.compositor)
+    if args.font:
+        if validators.url(args.font):
+            line += "**[FONT]**\n - [{entity}]({link})\n\n".format(entity=extract(args.font), link=args.font)
+        else:
+            line += "**[FONT]**\n - {entity}\n\n".format(entity=args.font)
+    if args.theme:
+        if validators.url(args.theme):
+            line += "**[THEME]**\n - [{entity}]({link})\n\n".format(entity=extract(args.theme), link=args.theme)
+        else:
+            line += "**[THEME]**\n - {entity}\n\n".format(entity=args.theme)
+    if args.dock:
+        if validators.url(args.dock):
+            line += "**[DOCK]**\n - [{entity}]({link})\n\n".format(entity=extract(args.dock), link=args.dock)
+        else:
+            line += "**[DOCK]**\n - {entity}\n\n".format(entity=args.dock)
+    if args.fetch:
+        if validators.url(args.fetch):
+            line += "**[FETCH]**\n - [{entity}]({link})\n\n".format(entity=extract(args.fetch), link=args.fetch)
+        else:
+            line += "**[FETCH]**\n - {entity}\n\n".format(entity=args.fetch)
+    if args.shell:
+        if validators.url(args.shell):
+            line += "**[SHELL]**\n - [{entity}]({link})\n\n".format(entity=extract(args.shell), link=args.shell)
+        else:
+            line += "**[SHELL]**\n - {entity}\n\n".format(entity=args.shell)
+    if args.operatingsystem:
+        if validators.url(args.operatingsystem):
+            line += "**[OPERATING-SYSTEM]**\n - [{entity}]({link})\n\n".format(entity=extract(args.operatingsystem), link=args.operatingsystem)
+        else:
+            line += "**[OPERATING-SYSTEM]**\n - {entity}\n\n".format(entity=args.operatingsystem)
+    print(line)
+
+   
+
+
+
+
